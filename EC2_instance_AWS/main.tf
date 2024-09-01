@@ -27,6 +27,6 @@ resource "aws_instance" "example" {
   vpc_security_group_ids = [data.aws_security_group.existing.id]
 
   tags = {
-    Name = "bia-japones-${count.index + 1}"
+    Name = "yourec2-name-${count.index + 1}"
   }
 }
