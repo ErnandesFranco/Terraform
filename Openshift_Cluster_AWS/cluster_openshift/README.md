@@ -61,7 +61,9 @@ Creating a Machine Pool: Use machine_pool.tf to create and manage machine pools 
 After deploying, the following outputs will be available:
 
 cluster_id: The ID of the deployed ROSA cluster.
+
 oidc_thumbprint: The OIDC thumbprint for the cluster.
+
 oidc_endpoint_url: The OIDC endpoint URL for the cluster.
 
 ### Licensing
