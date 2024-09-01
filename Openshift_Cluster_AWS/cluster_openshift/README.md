@@ -1,5 +1,3 @@
-# rosa-terraform
-
 ## Overview
 
 `rosa-terraform` provides Terraform configurations for deploying and managing Red Hat OpenShift Service on AWS (ROSA) clusters and machine pools. This repository includes Terraform scripts to set up clusters, machine pools, and related resources on AWS.
