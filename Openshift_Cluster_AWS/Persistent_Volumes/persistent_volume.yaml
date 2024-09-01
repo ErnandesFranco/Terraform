@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: app-data-pv  # Name of the Persistent Volume
+spec:
+  capacity:
+    storage: 375Gi  # Total storage capacity of the PV. Should be greater than or equal to the PVC request
+  volumeMode: Filesystem  # Mode of the volume. Filesystem is used for file storage
+  accessModes:
+    - ReadWriteMany  # Access mode for the PV, allowing multiple pods to read and write
+  persistentVolumeReclaimPolicy: Retain  # Reclaim policy for the PV when the PVC is deleted
+  storageClassName: efs-sc  # Storage class that defines the EFS storage configuration
+  csi:
+    driver: efs.csi.aws.com  # CSI driver used for the EFS storage
+    volumeHandle: fs-03231233.efs.us-east-1.amazonaws.com  # EFS file system ID. Replace with your EFS ID
+    readOnly: false  # Set to true if the volume should be read-only; false allows read and write
