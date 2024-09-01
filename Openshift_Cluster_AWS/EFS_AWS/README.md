@@ -8,6 +8,7 @@ This Terraform configuration creates an Amazon Elastic File System (EFS) and ass
 - `variables.tf`: Defines all the input variables used in the Terraform configuration.
 - `outputs.tf`: Specifies the outputs from the Terraform deployment.
 - `terraform.tfvars`: Contains actual values for the variables used in the configuration.
+- `policy-rosa-EFS`: Defines the specific permissions required for the cluster to access and manage the EFS volume securely.
 
 ## Configuration
 
