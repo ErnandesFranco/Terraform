@@ -1,0 +1,34 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "elasticfilesystem:DescribeAccessPoints",
+                "elasticfilesystem:DescribeFileSystems",
+                "elasticfilesystem:DescribeMountTargetSecurityGroups",
+                "elasticfilesystem:DescribeMountTargets",
+                "elasticfilesystem:DescribeTags"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "elasticfilesystem:CreateAccessPoint",
+                "elasticfilesystem:CreateFileSystem",
+                "elasticfilesystem:CreateMountTarget",
+                "elasticfilesystem:PutFileSystemPolicy",
+                "elasticfilesystem:TagResource",
+                "elasticfilesystem:DeleteAccessPoint",
+                "elasticfilesystem:DeleteFileSystem",
+                "elasticfilesystem:DeleteMountTarget",
+                "elasticfilesystem:DeleteFileSystemPolicy",
+                "elasticfilesystem:UntagResource",
+                "elasticfilesystem:ModifyMountTargetSecurityGroups",
+                "elasticfilesystem:UpdateFileSystem"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
