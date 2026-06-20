@@ -1,11 +1,9 @@
-# EC2 Bastion Host Deployment with Terraform
+# EC2 Bastion Host
 
 This example deploys an EC2 bastion host on AWS. The instance uses user data to
 install common tools for AWS and ROSA administration.
 
 ## Prerequisites
-
-Before using this Terraform script, ensure that you have the following:
 
 - An AWS account with sufficient permissions to create EC2 instances, security groups, and related resources.
 - Terraform 1.5 or newer.
@@ -80,19 +78,8 @@ After deployment, the following outputs will be provided:
 
 To destroy the deployed EC2 bastion host and all associated resources, run:
 
-    terraform destroy
-    
+```sh
+terraform destroy
+```
+
 Review the plan and type `yes` to confirm.
-
-## Licensing
-This project is licensed under the MIT License. See the LICENSE file for details.
-
-## Contact
-For any questions or feedback, please contact me at [LinkedIn](https://www.linkedin.com/in/ernandesfranco/).
-
-## Explanation
-- **Project Structure**: Provides an overview of the files in your project.
-- **Configuration**: Explains the variables and outputs.
-- **Usage**: Guides users through the process of deploying and managing the bastion host.
-- **Cleanup**: Instructions for destroying the resources created by Terraform.
-- **Licensing & Contact**: Standard sections for open-source projects.

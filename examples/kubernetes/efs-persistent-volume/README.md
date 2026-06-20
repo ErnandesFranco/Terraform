@@ -10,7 +10,7 @@ This guide explains how to set up a Persistent Volume (PV) and Persistent Volume
 
 ## Files Overview
 
-### `storageclass.yml`
+### `storageclass.yaml`
 
 Defines the StorageClass that uses the EFS CSI driver.
 
@@ -22,7 +22,7 @@ metadata:
 provisioner: efs.csi.aws.com
 ```
 
-### `pv.yml`
+### `persistent_volume.yaml`
 Defines the Persistent Volume that uses the EFS file system.
 
 ```yaml
@@ -44,7 +44,7 @@ spec:
     readOnly: false  # Set to true if the volume should be read-only; false allows read and write
 ```
 
-### `pvc.yml`
+### `persistent_volume_claim.yaml`
 Defines the Persistent Volume Claim that requests storage from the Persistent Volume.
 ```yaml
 apiVersion: v1
@@ -65,19 +65,19 @@ spec:
 1. Apply the StorageClass Configuration:
 
 ```
-kubectl apply -f storageclass.yml
+kubectl apply -f storageclass.yaml
 ```
 
 2. Apply the Persistent Volume Configuration:
 
 ```
-kubectl apply -f pv.yml
+kubectl apply -f persistent_volume.yaml
 ```
 
 3. Apply the Persistent Volume Claim Configuration:
 
 ```
-kubectl apply -f pvc.yml
+kubectl apply -f persistent_volume_claim.yaml
 ```
 
 4. Verify the Setup:
@@ -87,16 +87,3 @@ Check the status of the Persistent Volume and Persistent Volume Claim:
 kubectl get pv
 kubectl get pvc
 ```
-
-## Licensing
-This project is licensed under the MIT License. See the LICENSE file for details.
-
-## Contact
-For any questions or feedback, please contact me at [LinkedIn](https://www.linkedin.com/in/ernandesfranco/).
-
-## Explanation
-Files Overview: Provides an overview of the YAML files used for the setup.
-
-Usage: Guides users through the process of applying the Kubernetes configurations.
-
-Licensing & Contact: Standard sections for open-source projects.

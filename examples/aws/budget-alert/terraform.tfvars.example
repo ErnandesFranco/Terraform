@@ -1,0 +1,6 @@
+region            = "us-east-1"
+budget_name       = "monthly-dev-budget"
+limit_amount      = 10
+limit_unit        = "USD"
+threshold_percent = 80
+alert_emails      = ["you@example.com"]

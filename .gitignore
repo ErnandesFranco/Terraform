@@ -28,4 +28,4 @@ crash.*.log
 oc.tar.gz
 rosa-linux.tar.gz
 awscliv2.zip
-aws/
+/aws/

@@ -10,7 +10,7 @@ target per subnet, and an AWS Backup policy.
 - `outputs.tf`: Specifies the outputs from the Terraform deployment.
 - `terraform.tfvars.example`: Example input values. Copy this to
   `terraform.tfvars` for local use.
-- `policy-rosa-EFS`: Defines the specific permissions required for the cluster to access and manage the EFS volume securely.
+- `rosa-efs-csi-policy.json`: Example IAM policy for ROSA or Kubernetes workloads that need to manage EFS CSI resources.
 
 ## Configuration
 
@@ -55,20 +55,3 @@ To destroy the deployed EFS and all associated resources, run:
    terraform destroy
    ```
 Review the plan and type yes to confirm.
-
-## Licensing
-This project is licensed under the MIT License. See the LICENSE file for details.
-
-## Contact
-For any questions or feedback, please contact me at [LinkedIn](https://www.linkedin.com/in/ernandesfranco/).
-
-## Explanation
-Project Structure: Provides an overview of the files in your project.
-
-Configuration: Explains the variables and outputs.
-
-Usage: Guides users through the process of deploying and managing the EFS.
-
-Cleanup: Instructions for destroying the resources created by Terraform.
-
-Licensing & Contact: Standard sections for open-source projects.

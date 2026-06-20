@@ -17,12 +17,15 @@ jobs:
       fail-fast: false
       matrix:
         working-directory:
-          - EC2_instance_AWS
-          - Openshift_Cluster_AWS/EFS_AWS
-          - Openshift_Cluster_AWS/ec2_bastion
-          - Openshift_Cluster_AWS/cluster_openshift/account
-          - Openshift_Cluster_AWS/cluster_openshift/cluster
-          - Openshift_Cluster_AWS/cluster_openshift/machipool
+          - examples/aws/budget-alert
+          - examples/aws/ec2-bastion
+          - examples/aws/ec2-instances
+          - examples/aws/efs-file-system
+          - examples/aws/s3-private-bucket
+          - examples/aws/vpc-basic
+          - examples/rosa/account-roles
+          - examples/rosa/cluster
+          - examples/rosa/machine-pool
 
     defaults:
       run:

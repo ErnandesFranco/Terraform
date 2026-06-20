@@ -1,0 +1,10 @@
+region                             = "us-east-1"
+bucket_name                        = ""
+name_prefix                        = "private-bucket"
+versioning_enabled                 = true
+noncurrent_version_expiration_days = 30
+
+tags = {
+  Environment = "dev"
+  ManagedBy   = "terraform"
+}
