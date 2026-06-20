@@ -15,22 +15,24 @@
 #
 
 terraform {
+  required_version = ">= 1.5.0"
+
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = ">= 4.20.0"  # Specify the minimum version of the AWS provider
+      version = ">= 4.20.0, < 6.0.0"
     }
     rhcs = {
       source  = "terraform-redhat/rhcs"
-      version = ">= 1.1.0"  # Specify the minimum version of the RHCS provider
+      version = ">= 1.1.0, < 2.0.0"
     }
   }
 }
 
 provider "rhcs" {
   # Authentication and endpoint information for the RHCS provider
-  token = var.token  # Replace with your RHCS token
-  url   = var.url    # Replace with the RHCS endpoint URL
+  token = var.token # Replace with your RHCS token
+  url   = var.url   # Replace with the RHCS endpoint URL
 }
 
 data "rhcs_policies" "all_policies" {
@@ -46,16 +48,16 @@ module "create_account_roles" {
   version = "0.0.12"
 
   # Module configurations for creating account roles and related resources
-  create_operator_roles = false  # Set to true to create operator roles
-  create_oidc_provider  = false  # Set to true to create an OIDC provider
-  create_account_roles  = true   # Set to true to create account roles
+  create_operator_roles = false # Set to true to create operator roles
+  create_oidc_provider  = false # Set to true to create an OIDC provider
+  create_account_roles  = true  # Set to true to create account roles
 
-  account_role_prefix    = var.account_role_prefix  # Prefix for account roles
-  ocm_environment        = var.ocm_environment        # OCM environment name
-  rosa_openshift_version = var.openshift_version     # OpenShift version to use
+  account_role_prefix    = var.account_role_prefix                                # Prefix for account roles
+  ocm_environment        = var.ocm_environment                                    # OCM environment name
+  rosa_openshift_version = var.openshift_version                                  # OpenShift version to use
   account_role_policies  = data.rhcs_policies.all_policies.account_role_policies  # Policies for account roles
-  operator_role_policies = data.rhcs_policies.all_policies.operator_role_policies  # Policies for operator roles
-  all_versions           = data.rhcs_versions.all     # All available versions from RHCS
-  path                   = var.path                   # Path to store resources
-  tags                   = var.tags                   # Tags for resource labeling
+  operator_role_policies = data.rhcs_policies.all_policies.operator_role_policies # Policies for operator roles
+  all_versions           = data.rhcs_versions.all                                 # All available versions from RHCS
+  path                   = var.path                                               # Path to store resources
+  tags                   = var.tags                                               # Tags for resource labeling
 }

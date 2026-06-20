@@ -1,0 +1,13 @@
+token               = "replace-with-ocm-offline-token"
+url                 = "https://api.openshift.com"
+cluster_id          = "replace-with-rosa-cluster-id"
+name                = "worker-pool"
+machine_type        = "m5.2xlarge"
+replicas            = 3
+autoscaling_enabled = false
+min_replicas        = null
+max_replicas        = null
+
+labels = {
+  role = "worker"
+}

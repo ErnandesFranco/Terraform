@@ -1,0 +1,11 @@
+token               = "replace-with-ocm-offline-token"
+url                 = "https://api.openshift.com"
+ocm_environment     = "production"
+openshift_version   = "4.12"
+account_role_prefix = "OpenshiftRosa"
+path                = null
+
+tags = {
+  Environment = "dev"
+  ManagedBy   = "terraform"
+}

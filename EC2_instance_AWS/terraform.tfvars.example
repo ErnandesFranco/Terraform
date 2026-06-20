@@ -1,0 +1,13 @@
+region                      = "us-east-1"
+instance_count              = 2
+instance_type               = "t2.micro"
+subnet_id                   = "subnet-0123456789abcdef0"
+security_group_id           = "sg-0123456789abcdef0"
+key_name                    = "example-key"
+associate_public_ip_address = true
+name_prefix                 = "example-ec2"
+
+tags = {
+  Environment = "dev"
+  ManagedBy   = "terraform"
+}

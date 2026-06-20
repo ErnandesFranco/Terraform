@@ -23,10 +23,6 @@ This example creates policies for operator roles. As a result, the operator poli
         ```sh
         export TF_VAR_token=<ocm_offline_token>
         ```
-    1. **Operator Role Prefix**: Prefix for your Operator role.
-        ```sh
-        export TF_operator_role_prefix=<prefix_name>
-        ```
     1. **ROSA API URL**: Should be `https://api.openshift.com`.
         ```sh
         export TF_VAR_url=https://api.openshift.com
@@ -91,4 +87,3 @@ When you no longer need the resources, use Terraform to delete them. Avoid manua
 2. **Confirm Deletion**: Terraform will prompt you to confirm the destruction of resources. Type `yes` to proceed.
 
 > **NOTE**: Manual deletion of resources may cause issues within your environment.
-

@@ -1,51 +1,48 @@
-# Terraform Project to Deploy 2 EC2 Instances
+# EC2 Instances on AWS
 
 ## Overview
 
-This project demonstrates how to deploy two EC2 instances using Terraform within the AWS Free Tier.
+This example launches one or more EC2 instances in an existing subnet and
+security group. By default, it looks up the latest Amazon Linux 2023 AMI for the
+selected region.
 
 ## Resources
 
-- 2 EC2 instances (t2.micro)
-- Security group for SSH access
-- Key pair for accessing the instances
+- EC2 instances.
+- Encrypted root EBS volumes.
+- Optional public IP association.
 
 ## Requirements
 
-- Terraform
-- AWS CLI configured with credentials
-- SSH key pair (`id_rsa.pub` should be in `~/.ssh/` or specify the path)
+- Terraform 1.5 or newer.
+- AWS CLI configured with credentials.
+- Existing subnet, security group, and EC2 key pair.
 
 ## Usage
 
-1. Clone the repository:
-    ```bash
-    git clone https://github.com/yourusername/terraform-ec2-multi-instance.git
-    cd terraform-ec2-multi-instance
-    ```
+1. Copy the example variables file and customize the values:
 
-2. Initialize Terraform:
-    ```bash
-    terraform init
-    ```
+   ```bash
+   cp terraform.tfvars.example terraform.tfvars
+   ```
 
-3. Plan the deployment:
-    ```bash
-    terraform plan
-    ```
+2. Initialize and validate the configuration:
 
-4. Apply the configuration:
-    ```bash
-    terraform apply
-    ```
+   ```bash
+   terraform init
+   terraform fmt
+   terraform validate
+   ```
 
-5. Destroy the resources when done:
-    ```bash
-    terraform destroy
-    ```
+3. Review and apply the plan:
 
-## Licensing
-This project is licensed under the MIT License - see the LICENSE file for details.
+   ```bash
+   terraform plan
+   terraform apply
+   ```
 
-## Contact
-For any questions or feedback, please contact me at [LinkedIn](https://www.linkedin.com/in/ernandesfranco/).
+4. Destroy the resources when done:
+
+   ```bash
+   terraform destroy
+   ```

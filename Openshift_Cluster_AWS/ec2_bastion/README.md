@@ -1,21 +1,26 @@
 # EC2 Bastion Host Deployment with Terraform
 
-This repository contains Terraform code to deploy an EC2 bastion host on AWS. The bastion host is set up with necessary tools to manage AWS resources and interact with ROSA (Red Hat OpenShift Service on AWS).
+This example deploys an EC2 bastion host on AWS. The instance uses user data to
+install common tools for AWS and ROSA administration.
 
 ## Prerequisites
 
 Before using this Terraform script, ensure that you have the following:
 
 - An AWS account with sufficient permissions to create EC2 instances, security groups, and related resources.
-- Terraform installed on your local machine.
+- Terraform 1.5 or newer.
 - An SSH key pair to access the EC2 instance.
+- Existing subnet and security group IDs.
 
 ## Project Structure
 
 - **main.tf**: Contains the main Terraform configuration for deploying the EC2 instance.
 - **variables.tf**: Defines the input variables used in the Terraform configuration.
-- **terraform.tfvars**: Contains the values for the variables, customized for your environment.
-- **output.tf**: Defines the outputs provided by the Terraform deployment.
+- **terraform.tfvars.example**: Example input values. Copy this to
+  `terraform.tfvars` for local use.
+- **outputs.tf**: Defines the outputs provided by the Terraform deployment.
+- **user_data.sh**: Installs Terraform, AWS CLI, OpenShift CLI, and ROSA CLI on
+  first boot.
 
 ## Configuration
 
@@ -27,7 +32,7 @@ The following variables are defined in `variables.tf` and should be provided in 
 |---------------------|----------------------------------------------------------------|--------------------------|
 | `subnet_id`         | The ID of the subnet where the EC2 instance will be deployed   | `subnet-0123456789abcdef`|
 | `security_group_id` | The ID of the security group attached to the EC2 instance      | `sg-0123456789abcdef`    |
-| `ami`               | The Amazon Machine Image (AMI) ID to use for the EC2 instance  | `ami-02978b79564e08f2f`  |
+| `ami_id`            | Optional AMI ID. Uses Amazon Linux 2023 when null              | `null`                   |
 | `instance_type`     | The EC2 instance type (e.g., t3.xlarge)                        | `t3.xlarge`              |
 | `key_name`          | The name of the SSH key pair to access the EC2 instance        | `rosa-bastion-dev`       |
 
@@ -41,20 +46,25 @@ After deployment, the following outputs will be provided:
 
 ## Usage
 
-1. **Clone the repository**:
+1. Copy and customize variables:
+
    ```sh
-   git clone https://github.com/yourusername/your-repo-name.git
-   cd your-repo-name
+   cp terraform.tfvars.example terraform.tfvars
    ```
-2. **Initialize Terraform**:
+
+2. **Initialize and validate Terraform**:
+
    ```sh
    terraform init
+   terraform fmt
+   terraform validate
    ```
 ## Applying the Terraform Configuration
 
-1. Apply the Terraform configuration:
+1. Review and apply the Terraform configuration:
 
     ```sh
+    terraform plan
     terraform apply
     ```
 

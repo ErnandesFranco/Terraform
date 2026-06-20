@@ -1,0 +1,14 @@
+token                = "replace-with-ocm-offline-token"
+url                  = "https://api.openshift.com"
+account_role_prefix  = "OpenshiftRosa"
+operator_role_prefix = "OpenshiftRosa"
+cluster_name         = "rosa-example"
+cloud_region         = "us-east-1"
+availability_zones   = ["us-east-1a", "us-east-1b"]
+aws_subnet_ids       = ["subnet-0123456789abcdef0", "subnet-abcdef01234567890"]
+machine_cidr         = "10.155.84.0/24"
+
+tags = {
+  Environment = "dev"
+  ManagedBy   = "terraform"
+}

@@ -1,7 +1,14 @@
 output "instance_ids" {
-  value = aws_instance.example[*].id
+  description = "IDs of the EC2 instances."
+  value       = aws_instance.example[*].id
 }
 
 output "instance_public_ips" {
-  value = aws_instance.example[*].public_ip
+  description = "Public IP addresses of the EC2 instances."
+  value       = aws_instance.example[*].public_ip
+}
+
+output "instance_private_ips" {
+  description = "Private IP addresses of the EC2 instances."
+  value       = aws_instance.example[*].private_ip
 }

@@ -1,13 +1,15 @@
-# Terraform EFS Configuration
+# EFS on AWS
 
-This Terraform configuration creates an Amazon Elastic File System (EFS) and associated resources on AWS. 
+This example creates an encrypted Amazon Elastic File System (EFS), one mount
+target per subnet, and an AWS Backup policy.
 
 ## Project Structure
 
 - `main.tf`: Contains the primary Terraform configuration for EFS, including resources like the EFS file system and mount targets.
 - `variables.tf`: Defines all the input variables used in the Terraform configuration.
 - `outputs.tf`: Specifies the outputs from the Terraform deployment.
-- `terraform.tfvars`: Contains actual values for the variables used in the configuration.
+- `terraform.tfvars.example`: Example input values. Copy this to
+  `terraform.tfvars` for local use.
 - `policy-rosa-EFS`: Defines the specific permissions required for the cluster to access and manage the EFS volume securely.
 
 ## Configuration
@@ -19,29 +21,29 @@ Before you begin, make sure you have the following:
 
 ### Variables
 
-Customize the `terraform.tfvars` file with your specific values:
+Copy the example variables file and customize it with your specific values:
 
-   ```hcl
-   aws_region         = "us-east-1"
-   performance_mode   = "generalPurpose"
-   throughput_mode    = "bursting"
-   efs_name           = "rosa-dev-efs-1"
-   subnet_id          = "your-subnet-id"
-   security_group_ids = ["your-security-group-id"]
-   vpc_id             = "your-vpc-id"
-   mount_target_count = 1
-   ```
+```bash
+cp terraform.tfvars.example terraform.tfvars
+```
 
 ## Usage
 
-1. **Initialize Terraform:**
-   ```sh
+1. Initialize and validate Terraform:
+
+   ```bash
    terraform init
-    ```
-2. Apply the Terraform Configuration:
+   terraform fmt
+   terraform validate
    ```
+
+2. Review and apply the Terraform configuration:
+
+   ```bash
+   terraform plan
    terraform apply
    ```
+
 Review the plan and type yes to confirm.
 
 3. Access EFS Information: After applying, Terraform will output information about the created EFS file system and mount targets.

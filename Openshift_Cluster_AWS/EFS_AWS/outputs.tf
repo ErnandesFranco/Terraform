@@ -5,5 +5,10 @@ output "efs_file_system_id" {
 
 output "efs_mount_target_ids" {
   description = "The IDs of the EFS mount targets."
-  value       = aws_efs_mount_target.efs_mount.*.id
+  value       = { for subnet_id, target in aws_efs_mount_target.efs_mount : subnet_id => target.id }
+}
+
+output "efs_dns_name" {
+  description = "The DNS name of the EFS file system."
+  value       = aws_efs_file_system.efs_server.dns_name
 }

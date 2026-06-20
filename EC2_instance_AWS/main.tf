@@ -1,32 +1,44 @@
 provider "aws" {
-  region = "us-east-1"
+  region = var.region
 }
 
-# Reference to existing security group
-data "aws_security_group" "existing" {
-  id = "sg-063c48db0dadd1842"  # Replace with your existing security group ID
+data "aws_ami" "amazon_linux" {
+  count       = var.ami_id == null ? 1 : 0
+  most_recent = true
+  owners      = ["amazon"]
+
+  filter {
+    name   = "name"
+    values = ["al2023-ami-*-kernel-*-x86_64"]
+  }
+
+  filter {
+    name   = "virtualization-type"
+    values = ["hvm"]
+  }
 }
 
-# Reference to existing key pair
-data "aws_key_pair" "existing" {
-  key_name = "ec2" # Replace with your existing key pair name
+locals {
+  ami_id = var.ami_id != null ? var.ami_id : data.aws_ami.amazon_linux[0].id
 }
 
 resource "aws_instance" "example" {
-  count         = 2
-  ami           = "ami-0583d8c7a9c35822c" # Amazon Linux 2 AMI (HVM), SSD Volume Type
-  instance_type = "t2.micro" # Free tier eligible
+  count                       = var.instance_count
+  ami                         = local.ami_id
+  instance_type               = var.instance_type
+  key_name                    = var.key_name
+  subnet_id                   = var.subnet_id
+  vpc_security_group_ids      = [var.security_group_id]
+  associate_public_ip_address = var.associate_public_ip_address
 
-  # Use the existing key pair
-  key_name = data.aws_key_pair.existing.key_name
-
-  # Specify the subnet ID
-  subnet_id = "subnet-0205c169ad4a44e38"  # Replace with your existing subnet ID
-
-  # Use VPC security group IDs
-  vpc_security_group_ids = [data.aws_security_group.existing.id]
-
-  tags = {
-    Name = "yourec2-name-${count.index + 1}"
+  root_block_device {
+    encrypted = true
   }
+
+  tags = merge(
+    var.tags,
+    {
+      Name = "${var.name_prefix}-${count.index + 1}"
+    }
+  )
 }

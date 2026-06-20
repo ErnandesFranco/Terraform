@@ -2,7 +2,6 @@ variable "token" {
   description = "The authentication token for the OpenShift cluster."
   type        = string
   sensitive   = true
-  default     = "paste the cluster token"
 }
 
 variable "url" {
@@ -14,7 +13,6 @@ variable "url" {
 variable "cluster_id" {
   description = "The ID of the cluster which the machine pool is created for."
   type        = string
-  default     = "paste the id of the cluster here"
 }
 
 variable "name" {
@@ -37,8 +35,8 @@ variable "replicas" {
 
 variable "autoscaling_enabled" {
   description = "Enables autoscaling. This variable requires setting a maximum and minimum replicas range using the `max_replicas` and `min_replicas` variables."
-  type        = string
-  default     = "false"
+  type        = bool
+  default     = false
 }
 
 variable "min_replicas" {

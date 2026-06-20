@@ -1,44 +1,43 @@
 # Variables for configuring the ROSA STS cluster and related resources
 
-# Token used for authentication with the Red Hat Cloud Services API
 variable "token" {
-  type      = string
-  sensitive = true
+  description = "OpenShift Cluster Manager offline token used by the RHCS provider."
+  type        = string
+  sensitive   = true
 }
 
-# Prefix for operator roles
 variable "operator_role_prefix" {
-  type = string
+  description = "Prefix for ROSA operator roles."
+  type        = string
 }
 
-# URL for the OCM environment
 variable "url" {
   type        = string
   description = "Provide OCM environment by setting a value to URL"
   default     = "https://api.openshift.com"
 }
 
-# Prefix for account roles
 variable "account_role_prefix" {
-  type = string
+  description = "Prefix for account roles created before cluster creation."
+  type        = string
 }
 
-# Name of the ROSA cluster
 variable "cluster_name" {
-  type    = string
-  default = "rosa-cluster-name"
+  description = "Name of the ROSA cluster."
+  type        = string
+  default     = "rosa-cluster-name"
 }
 
-# AWS region where the ROSA cluster will be created
 variable "cloud_region" {
-  type    = string
-  default = "us-east-1"
+  description = "AWS region where the ROSA cluster will be created."
+  type        = string
+  default     = "us-east-1"
 }
 
-# List of availability zones for the ROSA cluster
 variable "availability_zones" {
-  type    = list(string)
-  default = ["us-east-1a"]
+  description = "Availability zones for the ROSA cluster."
+  type        = list(string)
+  default     = ["us-east-1a"]
 }
 
 # Tags to apply to AWS resources
@@ -48,14 +47,18 @@ variable "tags" {
   default     = null
 }
 
-# List of AWS subnet IDs for the cluster
 variable "aws_subnet_ids" {
-  type    = list(string)
-  default = ["subnet-id", "subnet-id"]  # Add your subnet IDs here
+  description = "Existing AWS subnet IDs for the cluster."
+  type        = list(string)
+
+  validation {
+    condition     = length(var.aws_subnet_ids) > 0 && alltrue([for subnet_id in var.aws_subnet_ids : can(regex("^subnet-", subnet_id))])
+    error_message = "aws_subnet_ids must contain at least one valid AWS subnet ID."
+  }
 }
 
-# CIDR range for the machines in the cluster
 variable "machine_cidr" {
-  type    = string
-  default = "10.155.84.0/24"  # Default machine CIDR range
+  description = "CIDR range for the machines in the cluster."
+  type        = string
+  default     = "10.155.84.0/24"
 }

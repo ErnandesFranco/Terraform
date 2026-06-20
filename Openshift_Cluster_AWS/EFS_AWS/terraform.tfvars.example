@@ -1,0 +1,12 @@
+aws_region           = "us-east-1"
+performance_mode     = "generalPurpose"
+throughput_mode      = "bursting"
+efs_name             = "example-efs"
+subnet_ids           = ["subnet-0123456789abcdef0", "subnet-abcdef01234567890"]
+security_group_ids   = ["sg-0123456789abcdef0"]
+enable_backup_policy = true
+
+tags = {
+  Environment = "dev"
+  ManagedBy   = "terraform"
+}

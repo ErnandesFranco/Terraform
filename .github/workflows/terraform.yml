@@ -1,0 +1,47 @@
+name: Terraform
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Validate ${{ matrix.working-directory }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        working-directory:
+          - EC2_instance_AWS
+          - Openshift_Cluster_AWS/EFS_AWS
+          - Openshift_Cluster_AWS/ec2_bastion
+          - Openshift_Cluster_AWS/cluster_openshift/account
+          - Openshift_Cluster_AWS/cluster_openshift/cluster
+          - Openshift_Cluster_AWS/cluster_openshift/machipool
+
+    defaults:
+      run:
+        working-directory: ${{ matrix.working-directory }}
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.10.5
+
+      - name: Check formatting
+        run: terraform fmt -check -recursive
+
+      - name: Initialize
+        run: terraform init -backend=false
+
+      - name: Validate
+        run: terraform validate

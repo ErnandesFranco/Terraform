@@ -1,32 +1,33 @@
 # Variables for Terraform configuration
 
 variable "ocm_environment" {
-  type    = string
-  default = "production" # Default environment is production
   description = "The OpenShift Cluster Manager environment (e.g., production, staging)."
+  type        = string
+  default     = "production"
 }
 
 variable "openshift_version" {
-  type    = string
-  default = "4.12" # Default OpenShift version
   description = "The version of OpenShift to deploy."
+  type        = string
+  default     = "4.12"
 }
 
 variable "account_role_prefix" {
-  type    = string
-  default = "OpenshiftRosa" # Default prefix for account roles
   description = "Prefix to use for account roles."
+  type        = string
+  default     = "OpenshiftRosa"
 }
 
 variable "token" {
   type        = string
   description = "OpenShift Cluster Manager offline token required for authentication."
+  sensitive   = true
 }
 
 variable "url" {
   type        = string
   description = "The URL for the OpenShift Cluster Manager (OCM). Default is https://api.openshift.com."
-  default     = "https://api.openshift.com" # Default URL for OCM
+  default     = "https://api.openshift.com"
 }
 
 variable "path" {

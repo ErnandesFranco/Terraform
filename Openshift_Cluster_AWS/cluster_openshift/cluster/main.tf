@@ -16,14 +16,16 @@
 
 # Define Terraform providers required for this configuration
 terraform {
+  required_version = ">= 1.5.0"
+
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = ">= 4.20.0"
+      version = ">= 4.20.0, < 6.0.0"
     }
     rhcs = {
-      version = ">= 1.1.0"
       source  = "terraform-redhat/rhcs"
+      version = ">= 1.1.0, < 2.0.0"
     }
   }
 }
@@ -56,12 +58,12 @@ resource "rhcs_cluster_rosa_classic" "rosa_sts_cluster" {
   cloud_region       = var.cloud_region
   aws_account_id     = data.aws_caller_identity.current.account_id
   availability_zones = var.availability_zones
-  aws_subnet_ids     = var.aws_subnet_ids  # Specify the subnets for the cluster
+  aws_subnet_ids     = var.aws_subnet_ids # Specify the subnets for the cluster
   machine_cidr       = var.machine_cidr
   properties = {
     rosa_creator_arn = data.aws_caller_identity.current.arn
   }
-  sts = local.sts_roles
+  sts             = local.sts_roles
   destroy_timeout = 60 # Timeout for destroy operations in minutes
 }
 

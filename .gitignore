@@ -1,0 +1,31 @@
+# Local OS/editor files
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# Terraform working directories and local plans
+**/.terraform/*
+*.tfstate
+*.tfstate.*
+crash.log
+crash.*.log
+*.tfplan
+*.plan
+
+# Keep real environment values out of git.
+*.tfvars
+*.tfvars.json
+!*.tfvars.example
+
+# Secret material
+*.pem
+*.key
+*.p12
+*.pfx
+
+# CLI output generated while testing examples
+oc.tar.gz
+rosa-linux.tar.gz
+awscliv2.zip
+aws/
